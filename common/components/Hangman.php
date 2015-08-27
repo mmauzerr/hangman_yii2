@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mmauzerr
- * Date: 24.8.15.
- * Time: 21.15
- */
 
 namespace common\components;
 
@@ -90,7 +84,7 @@ class Hangman
     }
 }
 
-$hangman = new Hangman('DanGuBA');
+$hangman = new Hangman();
 
 echo ' Main Word Letters : ';
 print_r($hangman->getMainWordLetters());
