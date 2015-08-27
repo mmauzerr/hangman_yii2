@@ -13,10 +13,10 @@ namespace common\components;
 
 class Hangman
 {
-    public $mainWord = 'Desi dasi moj jarane';
+    public $mainWord = 'DanGuba';
     public $allLetters = ['a', 'b', 'v', 'g', 'd', 'đ', 'e', 'ž', 'z', 'i', 'j', 'k',
         'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'ć', 'u', 'f', 'h', 'c', 'č', 'q', 'š'];
-    public $usedLetters = ['a', 'r', 'f', 'd', 'u', 's', 'k', 'l', 'j'];
+    public $usedLetters = ['a', 'r', 'f', 'd', 'u', 's', 'l', 'g', 'k', 'p'];
     public $imageSet = ['sl1.jpg', 'sl2.jpg', 'sl3.jpg', 'sl4.jpg', 'sl5.jpg', 'sl6.jpg'];
     public $inputLetter = ['g']; // get from $_POST['letter']
     public $maxNumOfFailedTry = 6;
@@ -51,10 +51,8 @@ class Hangman
 
     public function getRemainingLetters()
     {
-        $maskedWord = $this->getMaskedMainWord();
-
-        $remainingTry = array_count_values($maskedWord);
-        return $remainingTry['_'];
+        $remainingLetters = array_count_values($this->getMaskedMainWord());
+        return $remainingLetters['_'];
     }
 
     public function getRemainingBoardLetters()
@@ -74,7 +72,8 @@ class Hangman
         $letters = array_diff($letters, [' ']);
         $numOfFails = count(array_diff($this->usedLetters, $letters));
         $num = $this->maxNumOfFailedTry - $numOfFails;
-        return $num ?: 0;
+
+        return $num || !$num <0 ?: 'No More';
     }
 
     public function getNumOfRemainingLetters()
@@ -91,7 +90,7 @@ class Hangman
     }
 }
 
-$hangman = new Hangman();
+$hangman = new Hangman('DanGuBA');
 
 echo ' Main Word Letters : ';
 print_r($hangman->getMainWordLetters());
@@ -117,9 +116,8 @@ print_r($hangman->getNumOfFailedTry());
 echo "\n Remaining Number of Try : \t";
 print_r($hangman->getRemainingNumOfTry());
 
-echo " Try Number : ";
+echo "\n Try Number : ";
 print_r($hangman->getTryNumb());
 
 echo "\n Remaining Letters : \t";
 print_r($hangman->getRemainingLetters());
-
