@@ -7,7 +7,7 @@ namespace common\components;
 
 class Hangman
 {
-    public $mainWord = 'DanGuba';
+    public $mainWord = 'DanGuba marI(0Nko';
     public $allLetters = ['a', 'b', 'v', 'g', 'd', 'đ', 'e', 'ž', 'z', 'i', 'j', 'k',
         'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'ć', 'u', 'f', 'h', 'c', 'č', 'q', 'š'];
     public $usedLetters = ['a', 'r', 'f', 'd', 'u', 's', 'l', 'g', 'k', 'p'];
@@ -31,6 +31,15 @@ class Hangman
             }
         }
         return $letters;
+    }
+
+    public function isValidLetter($inputLetter)
+    {
+        if(preg_match("/[A-Za-z0-9]+/", $inputLetter) == true){
+            return $inputLetter;
+        } else {
+            return 'Not valid character!';
+        }
     }
 
     public function getUsedLetters()
@@ -115,3 +124,6 @@ print_r($hangman->getTryNumb());
 
 echo "\n Remaining Letters : \t";
 print_r($hangman->getRemainingLetters());
+
+echo "\n Validation Of Character : \t";
+echo $hangman->isValidLetter('%');
