@@ -136,9 +136,9 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionGame()
     {
-        return $this->render('about');
+        return $this->render('game');
     }
 
     /**
